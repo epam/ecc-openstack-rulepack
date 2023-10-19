@@ -1,0 +1,19 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+- name: ecc-openstack-001-instance_has_default_sg_attached
+  comment: '040042022000'
+  description: |
+    Instances have default security group attached
+  resource: openstack.server
+  filters:
+  - type: value
+    key: security_groups[].name
+    value: default
+    op: in
+    value_type: swap
