@@ -6,14 +6,13 @@
 
 
 policies:
-- name: ecc-openstack-002-volume_not_in_use
-  comment: '040002042000'
+- name: ecc-openstack-008-volume_in_state_error
+  comment: '040046042000'
   description: |
-    Unused volumes exist
+    Volumes have an 'error' status
   resource: openstack.volume
   filters:
-  - type: value
-    key: attachments
-    value_type: size
-    op: eq
-    value: 0
+    - type: value
+      key: status
+      op: regex
+      value: 'error.*'
