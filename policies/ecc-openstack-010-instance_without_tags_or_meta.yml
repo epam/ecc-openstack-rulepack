@@ -9,7 +9,7 @@ policies:
 - name: ecc-openstack-010-instance_without_tags_or_meta
   comment: '040010032000'
   description: |
-    Instance without tags or metadata
+    Instance without tags or metadata information
   resource: openstack.server
   filters:
     - and:

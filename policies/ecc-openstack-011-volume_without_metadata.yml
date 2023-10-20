@@ -6,12 +6,12 @@
 
 
 policies:
-- name: ecc-openstack-009-project_without_tags
-  comment: '040010002000'
+- name: ecc-openstack-011-volume_without_metadata
+  comment: '040010042000'
   description: |
-    Project without tag information 
-  resource: openstack.project
+    Volumes without metadata information
+  resource: openstack.volume
   filters:
     - type: value
-      key: tags
+      key: metadata
       value: empty
