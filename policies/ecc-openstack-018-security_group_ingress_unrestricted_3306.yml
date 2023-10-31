@@ -1,0 +1,26 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+- name: ecc-openstack-018-security_group_ingress_unrestricted_3306
+  comment: '040042022000'
+  description: |
+    Security groups with unrestricted incoming traffic to MySQL (3306) port
+  resource: openstack.security-group
+  filters:
+    - type: list-item
+      key: security_group_rules
+      attrs:
+        - type: value
+          key: direction
+          value: ingress
+        - type: value
+          key: (port_range_min<=`3306` && port_range_max>=`3306`)
+          value: true
+        - type: value
+          key: (remote_ip_prefix=='0.0.0.0/0' || remote_ip_prefix=='::/0' || !remote_ip_prefix) && !remote_address_group_id && !remote_group_id
+          value: true
