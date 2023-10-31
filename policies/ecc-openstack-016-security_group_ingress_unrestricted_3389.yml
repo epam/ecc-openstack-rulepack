@@ -6,10 +6,10 @@
 
 
 policies:
-- name: ecc-openstack-013-security_group_ingress_unrestricted_22
+- name: ecc-openstack-016-security_group_ingress_unrestricted_3389
   comment: '040042022500'
   description: |
-    Security groups with unrestricted incoming traffic to SSH (22) port
+    Security groups with unrestricted incoming traffic to RDP (3389) port
   resource: openstack.security-group
   filters:
     - type: list-item
@@ -19,7 +19,7 @@ policies:
           key: direction
           value: ingress
         - type: value
-          key: (port_range_min<=`22` && port_range_max>=`22`)
+          key: (port_range_min<=`3389` && port_range_max>=`3389`)
           value: true
         - type: value
           key: (remote_ip_prefix=='0.0.0.0/0' || remote_ip_prefix=='::/0' || !remote_ip_prefix) && !remote_address_group_id && !remote_group_id
