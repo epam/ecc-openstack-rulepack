@@ -6,7 +6,7 @@
 
 
 policies:
-- name: ecc-openstack-006-instance_volume_delete_on_termination_enabled
+- name: ecc-openstack-006-instance_volume_delete_on_termination_disabled
   comment: '040002032000'
   description: |
     Volumes attached to instances are not marked for deletion upon instance termination

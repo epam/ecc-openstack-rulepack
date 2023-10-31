@@ -2,7 +2,7 @@ resource "openstack_blockstorage_volume_v3" "this" {
   name        = "006-volume-red"
   size        = 1
   description = <<EOT
-CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_enabled
+CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_disabled
 ComplianceStatus = Red
 EOT
 }

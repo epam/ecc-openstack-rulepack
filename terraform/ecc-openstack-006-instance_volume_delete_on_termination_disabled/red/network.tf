@@ -3,7 +3,7 @@ resource "openstack_networking_network_v2" "this" {
   admin_state_up = "true"
 
   tags = [
-    "CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_enabled",
+    "CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_disabled",
     "ComplianceStatus = Red"
   ]
 }
@@ -15,7 +15,7 @@ resource "openstack_networking_subnet_v2" "this" {
   ip_version = 4
 
   tags = [
-    "CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_enabled",
+    "CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_disabled",
     "ComplianceStatus = Red"
   ]
 }
@@ -31,7 +31,7 @@ resource "openstack_networking_port_v2" "this" {
   }
 
   tags = [
-    "CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_enabled",
+    "CustodianRule = ecc-openstack-006-instance_volume_delete_on_termination_disabled",
     "ComplianceStatus = Red"
   ]
 }
