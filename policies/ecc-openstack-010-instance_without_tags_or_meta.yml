@@ -1,0 +1,21 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+- name: ecc-openstack-010-instance_without_tags_or_meta
+  comment: '040010032000'
+  description: |
+    Instance without tags or metadata information
+  resource: openstack.server
+  filters:
+    - and:
+        - type: value
+          key: tags
+          value: empty
+        - type: value
+          key: metadata
+          value: empty

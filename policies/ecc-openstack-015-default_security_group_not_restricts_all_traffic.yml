@@ -1,0 +1,23 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+- name: ecc-openstack-015-default_security_group_not_restricts_all_traffic
+  comment: '040042022500'
+  description: |
+    Default security groups do not restrict all traffic
+  resource: openstack.security-group
+  filters:
+    - and: 
+      - type: value
+        key: name
+        value: default
+      - type: value
+        key: security_group_rules
+        value_type: size
+        op: ne
+        value: 0

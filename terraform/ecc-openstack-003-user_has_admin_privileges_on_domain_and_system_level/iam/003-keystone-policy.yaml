@@ -1,0 +1,4 @@
+# system scope
+
+"identity:list_users"
+"identity:list_role_assignments"

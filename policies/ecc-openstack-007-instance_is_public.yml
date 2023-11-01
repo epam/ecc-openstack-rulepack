@@ -1,0 +1,33 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+- name: ecc-openstack-007-instance_is_public
+  comment: '040040032000'
+  description: |
+    Instances have public IP address
+  resource: openstack.server
+  filters:
+    - not:
+      - type: value
+        key: status
+        value: DELETED
+    - or: 
+      - type: value
+        key: addresses.public
+        value: 0
+        op: gt
+        value_type: size
+      - type: value
+        key: addresses.*[?"OS-EXT-IPS:type" == 'floating'][]
+        value: 0
+        op: gt
+        value_type: size
+      - not:
+        - type: value
+          key: public_v4
+          value: ""
