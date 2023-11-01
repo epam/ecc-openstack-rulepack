@@ -1,5 +1,5 @@
 data "openstack_identity_project_v3" "this" {
-  name = "demo"
+  name = var.project_name
 }
 
 resource "openstack_identity_user_v3" "this" {

@@ -1,5 +1,5 @@
 data "openstack_identity_project_v3" "this" {
-  name = "demo"
+  name = var.project_name
 }
 
 resource "openstack_identity_user_v3" "this" {
@@ -11,7 +11,7 @@ resource "openstack_identity_user_v3" "this" {
 
   extra = {
     CustodianRule    = "ecc-openstack-003-user_has_admin_privileges_on_domain_and_system_level"
-    ComplianceStatus = "Red"
+    ComplianceStatus = "Red2"
   }
 }
 

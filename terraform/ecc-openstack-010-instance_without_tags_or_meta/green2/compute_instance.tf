@@ -1,5 +1,5 @@
 resource "openstack_compute_instance_v2" "this" {
-  name            = "010-instance-green"
+  name            = "010-instance-green2"
   image_id        = data.openstack_images_image_ids_v2.this.ids[0]
   flavor_id       = data.openstack_compute_flavor_v2.this.id
   security_groups = ["default"]
@@ -8,7 +8,7 @@ resource "openstack_compute_instance_v2" "this" {
   }
   metadata = {
     "CustodianRule"    = "ecc-openstack-010-instance_without_tag",
-    "ComplianceStatus" = "Green"
+    "ComplianceStatus" = "Green2"
   }
   depends_on = [openstack_networking_subnet_v2.this]
 }

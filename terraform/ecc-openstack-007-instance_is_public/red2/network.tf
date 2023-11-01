@@ -3,13 +3,13 @@ data "openstack_networking_network_v2" "this" {
 }
 
 resource "openstack_networking_secgroup_v2" "this" {
-  name                 = "007-security_group-red"
-  description          = "007-security_group-red"
+  name                 = "007-security_group-red2"
+  description          = "007-security_group-red2"
   delete_default_rules = false
 
   tags = [
     "CustodianRule = ecc-openstack-007-instance_is_public",
-    "ComplianceStatus = Red"
+    "ComplianceStatus = Red2"
   ]
 }
 

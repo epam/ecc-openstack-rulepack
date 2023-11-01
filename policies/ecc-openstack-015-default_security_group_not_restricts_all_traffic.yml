@@ -9,7 +9,7 @@ policies:
 - name: ecc-openstack-015-default_security_group_not_restricts_all_traffic
   comment: '040042022500'
   description: |
-    Default security group does not restricts all traffic
+    Default security groups do not restrict all traffic
   resource: openstack.security-group
   filters:
     - and: 

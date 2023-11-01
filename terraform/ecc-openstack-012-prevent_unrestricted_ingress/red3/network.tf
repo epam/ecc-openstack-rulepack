@@ -5,7 +5,7 @@ resource "openstack_networking_secgroup_v2" "this" {
 
   tags = [
     "CustodianRule = ecc-openstack-012-prevent_unrestricted_ingress",
-    "ComplianceStatus = Red2"
+    "ComplianceStatus = Red3"
   ]
 }
 
