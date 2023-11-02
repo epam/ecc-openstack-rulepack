@@ -1,0 +1,27 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+  - name: ecc-openstack-025-server_with_unrestricted_common_ports_part1
+    comment: '040042032000'
+    description: |
+      Security groups allow unrestricted access to ports with high risk (20-23, 25, 80, 110, 135, 143, 443, 445, 1433, 1434)
+    resource: openstack.server
+    filters:
+      - type: security-group
+        key: security_group_rules
+        attrs:
+          - type: value
+            key: direction
+            value: ingress
+          - type: value
+            key: (remote_ip_prefix=='0.0.0.0/0' || remote_ip_prefix=='::/0' || !remote_ip_prefix) && !remote_address_group_id && !remote_group_id
+            value: true
+          - type: value
+            key: (port_range_min<=`20` && port_range_max>=`20`) || (port_range_min<=`21` && port_range_max>=`21`) || (port_range_min<=`22` && port_range_max>=`22`) || (port_range_min<=`23` && port_range_max>=`23`) || (port_range_min<=`25` && port_range_max>=`25`) || (port_range_min<=`80` && port_range_max>=`80`) || (port_range_min<=`110` && port_range_max>=`110`) || (port_range_min<=`135` && port_range_max>=`135`) || (port_range_min<=`143` && port_range_max>=`143`) || (port_range_min<=`443` && port_range_max>=`443`)  || (port_range_min<=`445` && port_range_max>=`445`) || (port_range_min<=`1433` && port_range_max>=`1433`) || (port_range_min<=`1434` && port_range_max>=`1434`)
+            value: true          
+
