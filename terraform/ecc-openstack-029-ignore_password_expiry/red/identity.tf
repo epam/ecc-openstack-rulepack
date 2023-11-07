@@ -18,12 +18,12 @@ show tables;
 
 3. Find user 'id' in database (it is different from 'user_id'):  `select * from local_user;`
 
-4. View current exparation date, where instead of '{id}' insert 'id' found on the previous step: `select * from password where id = {id};`
+4. View current expiration date, where instead of '{id}' insert 'local_user_id' found on the previous step: `select * from password where local_user_id = {id};`
 
-5. You can change exparation date to the nearest time that you want, for example in 10 minutes:
+5. You can change expiration date to the nearest time that you want, for example in 10 minutes:
 ```
-UPDATE password SET expires_at_int = '1699346820000000' WHERE id = 41;
-UPDATE password SET expires_at = '2023-11-07 09:47:00' WHERE id = 41;
+UPDATE password SET expires_at_int = '1699346820000000' WHERE local_user_id = 41;
+UPDATE password SET expires_at = '2023-11-07 09:47:00' WHERE local_user_id = 41;
 ```
 */
 
