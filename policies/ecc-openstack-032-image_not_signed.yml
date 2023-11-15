@@ -1,0 +1,27 @@
+# Copyright (c) 2023 EPAM Systems, Inc.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+policies:
+  - name: ecc-openstack-032-image_not_signed
+    comment: '040046032000'
+    description: |
+      Images are not signed
+    resource: openstack.image
+    filters:
+      - not:
+        - type: value
+          key: properties.img_signature
+          value: present
+        - type: value
+          key: properties.img_signature_certificate_uuid
+          value: present
+        - type: value
+          key: properties.img_signature_hash_method
+          value: present
+        - type: value
+          key: properties.img_signature_key_type
+          value: present
