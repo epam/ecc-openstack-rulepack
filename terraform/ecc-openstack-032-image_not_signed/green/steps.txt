@@ -1,0 +1,24 @@
+Detailed documentation: https://docs.openstack.org/glance/latest/user/signature.html
+
+openssl genrsa -out private_key.pem 1024
+openssl rsa -pubout -in private_key.pem -out public_key.pem
+openssl req -new -key private_key.pem -out cert_request.csr -subj "/C=US/ST=New York/L=Brooklyn/O=Example Company/CN=example.com"
+openssl x509 -req -days 14 -in cert_request.csr -signkey private_key.pem -out new_cert.crt
+
+href=$(openstack secret store --name 032-secret-green --algorithm RSA  --secret-type certificate --payload-content-type "application/octet-stream" --payload-content-encoding base64 --payload "$(base64 new_cert.crt)" -f value -c "Secret href")
+cert_uuid=${href##*/}
+echo $cert_uuid
+
+wget https://launchpad.net/cirros/trunk/0.3.2/+download/cirros-0.3.2-source.tar.gz
+openssl dgst -sha256 -sign private_key.pem -sigopt rsa_padding_mode:pss -out myimage.signature cirros-0.3.2-source.tar.gz
+base64 -w 0 myimage.signature > myimage.signature.b64
+image_signature=$(cat myimage.signature.b64)
+
+glance image-create --name 032-image-green --container-format bare --disk-format qcow2 --property img_signature="$image_signature" --property img_signature_certificate_uuid="$cert_uuid" --property img_signature_hash_method='SHA-256' --property img_signature_key_type='RSA-PSS' < cirros-0.3.2-source.tar.gz
+
+
+openstack image delete 032-image-green
+openstack secret delete $href
+
+rm cert_request.csr cirros-0.3.2-source.tar.gz myimage.signature myimage.signature.b64 new_cert.crt private_key.pem public_key.pem
+
