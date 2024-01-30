@@ -1,5 +1,5 @@
+# Changelog
 
-### :open_file_folder: Initial version
 
 ## [v1.0] - 2024-01-30
 ### :sparkles: New Policies
@@ -35,6 +35,9 @@
 - [`ad2d505`](https://github.com/epam/ecc-openstack-rulepack/commit/ad2d505be4919322eeaf8b1837767e60ebbc9ab6) - added policy ecc-openstack-030-user_without_password_expiration
 - [`9986fa8`](https://github.com/epam/ecc-openstack-rulepack/commit/9986fa861c81c0e6c98aeda2557f9c3a13d35272) - added policy ecc-openstack-031-secret_without_expiration
 - [`1883ffd`](https://github.com/epam/ecc-openstack-rulepack/commit/1883ffd4e5cbfaafcfcdfdccd51c946c42013311) - added policy ecc-openstack-032-image_not_signed
+
+
+### :open_file_folder: Initial version
 
 
 [v1.0]: https://github.com/epam/ecc-openstack-rulepack/compare/Init...v1.0
